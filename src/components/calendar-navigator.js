@@ -17,7 +17,11 @@ const CalendarNavigator = ({
       <button style={styles.button} onClick={() => handleChange(-1)}>
         Edellinen
       </button>
-      <button style={styles.button} onClick={() => handleReset()}>
+      <button
+        style={styles.button}
+        onClick={() => handleReset()}
+        disabled={todayContent === ""}
+      >
         {todayContent}
       </button>
       <button style={styles.button} onClick={() => handleChange(1)}>
@@ -33,8 +37,7 @@ const styles = {
   },
   button: {
     maxWidth: "100px",
-    justifyContent: "center",
-    alignContent: "center",
+    minWidth: "80px",
   },
 }
 

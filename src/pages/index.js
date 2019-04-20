@@ -26,6 +26,8 @@ const IndexPage = () => {
     <Layout>
       <SEO title="Home" keywords={["nokkala", "vartio", "kalenteri"]} />
 
+      <h1>Varauskalenteri</h1>
+
       <CalendarNavigator
         handleChange={handleWindowChange}
         currentMonth={month}

@@ -6,20 +6,18 @@ const Header = ({ siteTitle }) => (
   <header
     style={{
       background: `rebeccapurple`,
-      marginBottom: `1.45rem`,
-      marginTop: "-8px",
-      marginLeft: "-8px",
-      marginRight: "-8px",
+      margin: `-8px -8px 1.45rem -8px`,
     }}
   >
     <div
       style={{
         margin: `0 auto`,
         maxWidth: 960,
-        padding: `1.45rem 1.0875rem`,
+        alignItems: "center",
       }}
+      className="grid"
     >
-      <h1 style={{ margin: 0 }}>
+      <h1 className="col">
         <Link
           to="/"
           style={{
@@ -30,6 +28,18 @@ const Header = ({ siteTitle }) => (
           {siteTitle}
         </Link>
       </h1>
+
+      <div className="col">
+        <Link
+          to="/signUp"
+          style={{
+            color: `white`,
+            textDecoration: `none`,
+          }}
+        >
+          Rekisteröidy
+        </Link>
+      </div>
     </div>
   </header>
 )

@@ -10,6 +10,7 @@ import PropTypes from "prop-types"
 import { StaticQuery, graphql } from "gatsby"
 
 import Header from "./header"
+import Footer from "./footer"
 import "./layout.css"
 
 const Layout = ({ children }) => (
@@ -24,23 +25,30 @@ const Layout = ({ children }) => (
       }
     `}
     render={data => (
-      <>
+      <div className="site">
         <Header siteTitle={data.site.siteMetadata.title} />
-        <div
-          style={{
-            margin: `0 auto`,
-            maxWidth: 960,
-            padding: `0px 1.0875rem 1.45rem`,
-            paddingTop: 0,
-          }}
-        >
+
+        <div style={styles.siteContent}>
           <main>{children}</main>
-          <footer>footer</footer>
         </div>
-      </>
+        <Footer />
+      </div>
     )}
   />
 )
+
+const styles = {
+  siteContent: {
+    margin: `0 auto`,
+    maxWidth: 960,
+    paddingTop: 0,
+    flexGrow: "1",
+  },
+  footer: {
+    backgroundColor: "rebeccapurple",
+    padding: "0.75rem",
+  },
+}
 
 Layout.propTypes = {
   children: PropTypes.node.isRequired,

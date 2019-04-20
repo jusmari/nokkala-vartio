@@ -4,12 +4,6 @@ html {
   -webkit-text-size-adjust: 100%;
 }
 
-body {
-  min-height: 100%;
-  position: relative;
-  max-width: 100%;
-}
-
 .holiday {
   background-color: rgba(154, 185, 227, 0.8);
 }
@@ -18,14 +12,42 @@ body {
   background-color: rgba(154, 185, 227, 0.3);
 }
 
+body {
+  margin-bottom: 0;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  font-weight: bold;
+}
+
+input,
+textarea {
+  width: 150px;
+  transition: all 0.3s ease-in;
+  outline: none;
+  padding: 3px 0px 3px 3px;
+  margin: 5px 1px 3px 0px;
+  border: 1px solid #dddddd;
+}
+
+input[type="text"]:focus,
+textarea:focus {
+  box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+  padding: 3px 0px 3px 3px;
+  margin: 5px 1px 3px 0px;
+  border: 1px solid rgba(81, 203, 238, 1);
+}
+
 .day-box:hover {
   transform: scale(1.05);
 }
 
-footer {
-  position: absolute;
-  bottom: 0;
-  height: 2rem; /* Footer height */
+.site {
+  display: flex;
+  min-height: calc(100vh - 8px);
+  flex-direction: column;
 }
 
 .today {
