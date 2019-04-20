@@ -1,6 +1,6 @@
 import React from "react"
 import dayjs from "dayjs"
-import DayBox from "./DayBox"
+import DayBox from "./dayBox"
 import { range, zipObj } from "ramda"
 
 const Calendar = ({ currentMonth, currentYear }) => {
