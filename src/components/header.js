@@ -5,7 +5,13 @@ import { useGlobalState } from "../services/state"
 import { signOut } from "../services/auth"
 
 const Header = ({ siteTitle }) => {
-  const [{ uid, displayName }, dispatch] = useGlobalState()
+  const globalState = useGlobalState()
+  let uid = null
+
+  if (globalState) {
+    const [{ uid: newUid, displayName }, dispatch] = globalState
+    uid = newUid
+  }
 
   return (
     <header

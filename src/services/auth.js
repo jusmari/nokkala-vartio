@@ -6,7 +6,8 @@ import { navigate } from "gatsby"
 
 export const AuthListener = () => {
   const { auth } = firebase
-  const [_, dispatch] = useGlobalState()
+  const globalState = useGlobalState()
+  const dispatch = globalState && globalState[1]
 
   useEffect(() => {
     // onAuthStateChanged returns an unsubscribe method
@@ -81,6 +82,5 @@ export const signIn = (email, password) => {
       var errorMessage = error.message
 
       return errorMessage
-      // ...
     })
 }

@@ -6,9 +6,7 @@ const StateContext = createContext()
 export const INITIAL_STATE = {
   uid: "",
   displayName: "",
-  // // some other properties from the user object that may be useful
-  // email: '',
-  // photoURL: '',
+  email: "",
 }
 
 export const StateProvider = ({ reducer, initialState, children }) => (

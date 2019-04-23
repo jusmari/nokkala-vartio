@@ -1,7 +1,6 @@
 import React, { useState } from "react"
 import { signIn } from "../services/auth"
 import BarLoader from "react-spinners/BarLoader"
-import { useGlobalState } from "../services/state"
 import { navigate } from "gatsby"
 
 const signUpForm = () => {
@@ -10,7 +9,6 @@ const signUpForm = () => {
   const [passwordConfirm, setPasswordConfirm] = useState("")
   const [error, setError] = useState(null)
   const [loading, setLoading] = useState(false)
-  const [_, dispatch] = useGlobalState()
 
   const handleSubmit = e => {
     e.preventDefault()

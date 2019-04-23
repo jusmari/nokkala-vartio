@@ -11,7 +11,8 @@ const signUpForm = () => {
   const [passwordConfirm, setPasswordConfirm] = useState("")
   const [error, setError] = useState(null)
   const [loading, setLoading] = useState(false)
-  const [_, dispatch] = useGlobalState()
+  const globalState = useGlobalState()
+  const dispatch = globalState && globalState[1]
 
   const handleSubmit = e => {
     e.preventDefault()
