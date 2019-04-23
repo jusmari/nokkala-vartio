@@ -1,12 +1,6 @@
 import React from "react"
-import dayjs from "dayjs"
 
-const CalendarNavigator = ({
-  currentMonth,
-  currentYear,
-  handleChange,
-  handleReset,
-}) => {
+const CalendarNavigator = ({ handleChange, handleReset }) => {
   return (
     <div style={styles.container} className="grid">
       <button style={styles.button} onClick={() => handleChange(-1)}>

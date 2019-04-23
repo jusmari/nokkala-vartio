@@ -1,5 +1,10 @@
 import React, { createContext, useContext, useReducer } from "react"
-import { SET_USER_INFO } from "../actions"
+import {
+  SET_USER_INFO,
+  CLOSE_MODAL,
+  OPEN_DAY,
+  SET_RESERVATIONS,
+} from "../actions"
 
 const StateContext = createContext()
 
@@ -7,6 +12,9 @@ export const INITIAL_STATE = {
   uid: "",
   displayName: "",
   email: "",
+  isModalOpen: false,
+  selectedDate: null,
+  reservations: [],
 }
 
 export const StateProvider = ({ reducer, initialState, children }) => (
@@ -15,7 +23,11 @@ export const StateProvider = ({ reducer, initialState, children }) => (
   </StateContext.Provider>
 )
 
-export const useGlobalState = () => useContext(StateContext)
+// gatsby breaks build time since context does no to seem work so well with it
+export const useGlobalState = () => {
+  const globalState = useContext(StateContext)
+  return globalState ? globalState : [{}, null]
+}
 
 export const reducer = (state, action) => {
   if (process.env.NODE_ENV === "development") {
@@ -25,6 +37,22 @@ export const reducer = (state, action) => {
   const { type, payload } = action
 
   switch (type) {
+    case SET_RESERVATIONS:
+      return {
+        ...state,
+        reservations: payload.data,
+      }
+    case OPEN_DAY:
+      return {
+        ...state,
+        isModalOpen: true,
+        selectedDate: payload.date,
+      }
+    case CLOSE_MODAL:
+      return {
+        ...state,
+        isModalOpen: false,
+      }
     case SET_USER_INFO:
       return {
         ...state,
@@ -36,6 +64,9 @@ export const reducer = (state, action) => {
   }
 }
 
-const logStateAndActionIfInDevelopment = (state, action) => {
+const logStateAndActionIfInDevelopment = (state, action, end) => {
   console.log("ACTION: " + action.type, action, state)
+  if (end) {
+    console.log("end of action")
+  }
 }

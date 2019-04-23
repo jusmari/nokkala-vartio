@@ -1,12 +1,11 @@
 import React, { useState } from "react"
 import { signIn } from "../services/auth"
-import BarLoader from "react-spinners/BarLoader"
 import { navigate } from "gatsby"
+import LoadingIndicator from "./loadingIndicator"
 
 const signUpForm = () => {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
-  const [passwordConfirm, setPasswordConfirm] = useState("")
   const [error, setError] = useState(null)
   const [loading, setLoading] = useState(false)
 
@@ -16,7 +15,6 @@ const signUpForm = () => {
 
     setLoading(true)
     signIn(email, password).then(e => {
-      console.log({ e })
       setLoading(false)
 
       if (e) {
@@ -61,14 +59,7 @@ const signUpForm = () => {
 
         <div className="col">
           {!loading && <button type="submit">Lähetä</button>}
-          {loading && (
-            <BarLoader
-              sizeUnit={"px"}
-              size={30}
-              color={"#123abc"}
-              loading={loading}
-            />
-          )}
+          {loading && <LoadingIndicator loading={loading} />}
         </div>
       </form>
     </>

@@ -2,8 +2,10 @@ import React from "react"
 import dayjs from "dayjs"
 import DayBox from "./dayBox"
 import { range, zipObj, times } from "ramda"
+import { useGlobalState } from "../services/state"
 
 const Calendar = ({ currentMonth, currentYear }) => {
+  const [{ reservations }, dispatch] = useGlobalState()
   const daysInMonth = new Date(currentYear, currentMonth, 0).getDate()
   const days = zipObj(range(0, 7), "su,ma,ti,ke,to,pe,la".split(","))
   const today = dayjs()
@@ -17,19 +19,23 @@ const Calendar = ({ currentMonth, currentYear }) => {
     firstDayWeekday - 1
   )
 
-  const dayBoxes = range(1, daysInMonth).map(d => (
-    <DayBox
-      key={d}
-      dayNumber={d}
-      month={currentMonth}
-      year={currentYear}
-      days={days}
-      today={today}
-    />
-  ))
+  const dayBoxes = range(1, daysInMonth).map(d => {
+    return (
+      <DayBox
+        key={d}
+        dayNumber={d}
+        month={currentMonth}
+        year={currentYear}
+        days={days}
+        today={today}
+        reservations={reservations}
+        dispatch={dispatch}
+      />
+    )
+  })
 
   return (
-    <div className="grid-8_xs-1" style={{ marginBottom: `1.45rem` }}>
+    <div className="grid-8_xs-1" style={{ marginBottom: `5rem` }}>
       {prefixDayBoxes}
       {dayBoxes}
     </div>

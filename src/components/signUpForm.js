@@ -1,8 +1,8 @@
 import React, { useState } from "react"
 import { signUp } from "../services/auth"
-import BarLoader from "react-spinners/BarLoader"
 import { useGlobalState } from "../services/state"
 import { navigate } from "gatsby"
+import LoadingIndicator from "./loadingIndicator"
 
 const signUpForm = () => {
   const [email, setEmail] = useState("")
@@ -11,8 +11,7 @@ const signUpForm = () => {
   const [passwordConfirm, setPasswordConfirm] = useState("")
   const [error, setError] = useState(null)
   const [loading, setLoading] = useState(false)
-  const globalState = useGlobalState()
-  const dispatch = globalState && globalState[1]
+  const [, dispatch] = useGlobalState()
 
   const handleSubmit = e => {
     e.preventDefault()
@@ -93,14 +92,7 @@ const signUpForm = () => {
 
         <div className="col">
           {!loading && <button type="submit">Lähetä</button>}
-          {loading && (
-            <BarLoader
-              sizeUnit={"px"}
-              size={30}
-              color={"#123abc"}
-              loading={loading}
-            />
-          )}
+          {loading && <LoadingIndicator loading={loading} />}
         </div>
       </form>
     </>
