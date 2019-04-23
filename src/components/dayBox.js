@@ -21,9 +21,11 @@ const DayBox = ({
     new Date(year, month - 1, dayNumber)
   ).format("DD-MM-YYYY")
 
-  const todaysReservations = reservations.find(r => {
-    return r.date === formattedRelativeToday
-  })
+  const todaysReservations =
+    reservations &&
+    reservations.find(r => {
+      return r.date === formattedRelativeToday
+    })
 
   const nameContent = () => <div>💂‍♀️{todaysReservations.name}</div>
 
