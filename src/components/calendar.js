@@ -5,15 +5,19 @@ import { range, zipObj, times } from "ramda"
 
 const Calendar = ({ currentMonth, currentYear }) => {
   const daysInMonth = new Date(currentYear, currentMonth, 0).getDate()
-  const days = zipObj(range(0, 7), "ma,ti,ke,to,pe,la,su".split(","))
+  const days = zipObj(range(0, 7), "su,ma,ti,ke,to,pe,la".split(","))
   const today = dayjs()
 
   const firstDayWeekday = dayjs(
     new Date(currentYear, currentMonth - 1, 1)
   ).day()
-  const prefixDayBoxes = times(i => <DayBox.Empty key={i} />, firstDayWeekday)
 
-  const dayBoxes = range(1, daysInMonth + 1).map(d => (
+  const prefixDayBoxes = times(
+    i => <DayBox.Empty key={i} />,
+    firstDayWeekday - 1
+  )
+
+  const dayBoxes = range(1, daysInMonth).map(d => (
     <DayBox
       key={d}
       dayNumber={d}

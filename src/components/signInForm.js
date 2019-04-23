@@ -1,12 +1,11 @@
 import React, { useState } from "react"
-import { signUp } from "../services/auth"
+import { signIn } from "../services/auth"
 import BarLoader from "react-spinners/BarLoader"
 import { useGlobalState } from "../services/state"
 import { navigate } from "gatsby"
 
 const signUpForm = () => {
   const [email, setEmail] = useState("")
-  const [name, setName] = useState("")
   const [password, setPassword] = useState("")
   const [passwordConfirm, setPasswordConfirm] = useState("")
   const [error, setError] = useState(null)
@@ -17,15 +16,9 @@ const signUpForm = () => {
     e.preventDefault()
     setError("")
 
-    if (password !== passwordConfirm) {
-      setError("Salasanat eivät ole samat")
-      setPassword("")
-      setPasswordConfirm("")
-      return
-    }
-
     setLoading(true)
-    signUp(email, password, name, dispatch).then(e => {
+    signIn(email, password).then(e => {
+      console.log({ e })
       setLoading(false)
 
       if (e) {
@@ -41,15 +34,15 @@ const signUpForm = () => {
     <>
       {error && (
         <div style={{ paddingBottom: "1em", color: "brown" }}>
-          Rekisteröityminen epäonnistui! Syy: {error}
+          Kirjautuminen epäonnistui! Syy: {error}
         </div>
       )}
 
       <form onSubmit={handleSubmit} className="grid-1">
-        <label htmlFor="signUp-email-input" className="col">
+        <label htmlFor="signIn-email-input" className="col">
           Sähköposti
           <input
-            id="signUp-email-input"
+            id="signIn-email-input"
             type="email"
             value={email}
             required
@@ -57,36 +50,14 @@ const signUpForm = () => {
           />
         </label>
 
-        <label htmlFor="signUp-name-input" className="col">
-          Nimi
-          <input
-            id="signUp-name-input"
-            type="name"
-            value={name}
-            required
-            onChange={e => setName(e.target.value)}
-          />
-        </label>
-
-        <label htmlFor="signUp-password-input" className="col">
+        <label htmlFor="signIn-password-input" className="col">
           Salasana
           <input
-            id="signUp-password-input"
+            id="signIn-password-input"
             type="password"
             value={password}
             required
             onChange={e => setPassword(e.target.value)}
-          />
-        </label>
-
-        <label htmlFor="signUp-passwordConfirm-input" className="col">
-          Salasana
-          <input
-            id="signUp-passwordConfirm-input"
-            type="password"
-            value={passwordConfirm}
-            required
-            onChange={e => setPasswordConfirm(e.target.value)}
           />
         </label>
 

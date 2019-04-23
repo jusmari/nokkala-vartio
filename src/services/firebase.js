@@ -1,3 +1,7 @@
+import firebase from "@firebase/app"
+import "@firebase/auth"
+import "@firebase/firestore"
+
 const config = {
   apiKey: process.env.GATSBY_FIREBASE_API_KEY,
   authDomain: process.env.GATSBY_FIREBASE_AUTH_DOMAIN,
@@ -7,16 +11,16 @@ const config = {
   messagingSenderId: process.env.GATSBY_FIREBASE_MESSAGING_SENDER_ID,
 }
 
-let firebaseInstance
-const getFirebase = firebase => {
-  if (firebaseInstance) {
-    return firebaseInstance
+class Firebase {
+  constructor() {
+    firebase.initializeApp(config)
+    this.store = firebase.firestore
+    this.auth = firebase.auth
   }
 
-  firebase.initializeApp(config)
-  firebaseInstance = firebase
-
-  return firebase
+  get polls() {
+    return this.store().collection("polls")
+  }
 }
 
-export default getFirebase
+export default new Firebase()

@@ -13,6 +13,10 @@ module.exports = {
         path: `${__dirname}/src/images`,
       },
     },
+    {
+      resolve: `gatsby-plugin-create-client-paths`,
+      options: { prefixes: [] },
+    },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {

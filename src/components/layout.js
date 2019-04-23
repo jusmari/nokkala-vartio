@@ -43,6 +43,7 @@ const styles = {
     maxWidth: 960,
     paddingTop: 0,
     flexGrow: "1",
+    width: "100%",
   },
   footer: {
     backgroundColor: "rebeccapurple",

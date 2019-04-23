@@ -7,22 +7,13 @@ const CalendarNavigator = ({
   handleChange,
   handleReset,
 }) => {
-  const todayContent =
-    currentMonth === dayjs().month() + 1 && currentYear === dayjs().year()
-      ? ""
-      : "Tämä kuu"
-
   return (
     <div style={styles.container} className="grid">
       <button style={styles.button} onClick={() => handleChange(-1)}>
         Edellinen
       </button>
-      <button
-        style={styles.button}
-        onClick={() => handleReset()}
-        disabled={todayContent === ""}
-      >
-        {todayContent}
+      <button style={styles.button} onClick={() => handleReset()}>
+        Tänään
       </button>
       <button style={styles.button} onClick={() => handleChange(1)}>
         Seuraava
@@ -34,6 +25,7 @@ const CalendarNavigator = ({
 const styles = {
   container: {
     padding: "0.5em",
+    justifyContent: "center",
   },
   button: {
     maxWidth: "100px",

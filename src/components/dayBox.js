@@ -5,7 +5,7 @@ const DayBox = ({ dayNumber, month, year, days, today }) => {
   const relativeToday = dayjs(new Date(year, month - 1, dayNumber))
   const weekday = relativeToday.day()
 
-  const holidayClass = weekday === 5 || weekday === 6 ? "holiday" : "weekday"
+  const holidayClass = weekday === 6 || weekday === 0 ? "holiday" : "weekday"
   const todayClass = relativeToday.isSame(today, "day") ? "today" : ""
 
   return (
