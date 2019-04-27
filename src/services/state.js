@@ -4,6 +4,7 @@ import {
   CLOSE_MODAL,
   OPEN_DAY,
   SET_RESERVATIONS,
+  ADD_RESERVATION,
 } from "../actions"
 
 const StateContext = createContext()
@@ -37,6 +38,13 @@ export const reducer = (state, action) => {
   const { type, payload } = action
 
   switch (type) {
+    case ADD_RESERVATION:
+      const newReservation = payload
+
+      return {
+        ...state,
+        reservations: [...state.reservations, newReservation],
+      }
     case SET_RESERVATIONS:
       return {
         ...state,

@@ -1,4 +1,4 @@
-import { CLOSE_MODAL } from "../actions"
+import { CLOSE_MODAL, ADD_RESERVATION } from "../actions"
 import { useGlobalState } from "../services/state"
 import Modal from "react-modal"
 import React, { useState } from "react"
@@ -37,6 +37,10 @@ const DayReserveModal = () => {
       .collection("reservations")
       .add({ date: formattedDate, user: uid, name: displayName })
       .then(() => {
+        dispatch({
+          type: ADD_RESERVATION,
+          payload: { date: formattedDate, uid, name: displayName },
+        })
         setLoading(false)
       })
       .catch(e => {
@@ -47,45 +51,60 @@ const DayReserveModal = () => {
     closeModal()
   }
 
+  const notLoggedInModal = (
+    <>
+      <div style={{ marginBottom: "1em" }}>
+        Kirjaudu sisään varataksesi vartiovuoroja!
+      </div>
+      <button style={{ ...styles.size, ...styles.no }} onClick={closeModal}>
+        Sulje
+      </button>
+    </>
+  )
+
+  const loggedInModal = (
+    <>
+      {error && <div>{`Varaus epäonnistui:  ${error}`}</div>}
+      <div className="grid-middle">
+        <div className="col">{`Tahdotko merkitä vartiovuoron päivälle ${formattedDate}?`}</div>
+      </div>
+      <div className="grid">
+        {!loading && (
+          <>
+            <div className="col">
+              <button
+                style={{ ...styles.size, ...styles.no }}
+                onClick={closeModal}
+              >
+                Sulje
+              </button>
+            </div>
+            <div className="col">
+              <button
+                style={{ ...styles.size, ...styles.yes }}
+                onClick={handleReservation}
+              >
+                Kyllä
+              </button>
+            </div>
+          </>
+        )}
+        {loading && (
+          <div className="col">
+            <LoadingIndicator loading={loading} />
+          </div>
+        )}
+      </div>
+    </>
+  )
+
   return (
     <Modal
       isOpen={isModalOpen}
       onRequestClose={closeModal}
       style={customStyles}
     >
-      <>
-        {error && <div>{`Varaus epäonnistui:  ${error}`}</div>}
-        <div className="grid-middle">
-          <div className="col">{`Tahdotko merkitä vartiovuoron päivälle ${formattedDate}?`}</div>
-        </div>
-        <div className="grid">
-          {!loading && (
-            <>
-              <div className="col">
-                <button
-                  style={{ ...styles.size, ...styles.no }}
-                  onClick={closeModal}
-                >
-                  Sulje
-                </button>
-              </div>
-              <div className="col">
-                <button
-                  style={{ ...styles.size, ...styles.yes }}
-                  onClick={handleReservation}
-                >
-                  Kyllä
-                </button>
-              </div>
-            </>
-          )}
-          {loading && (
-            <div className="col">
-              <LoadingIndicator loading={loading} />
-            </div>
-          )}
-        </div>
-      </>
+      {uid ? loggedInModal : notLoggedInModal}
     </Modal>
   )
 }
