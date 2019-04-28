@@ -6,7 +6,7 @@ import { useGlobalState } from "../services/state"
 
 const Calendar = ({ currentMonth, currentYear }) => {
   const [{ reservations }, dispatch] = useGlobalState()
-  const daysInMonth = new Date(currentYear, currentMonth, 0).getDate()
+  const daysInMonth = new Date(currentYear, currentMonth, 0).getDate() + 1
   const days = zipObj(range(0, 7), "su,ma,ti,ke,to,pe,la".split(","))
   const today = dayjs()
 

@@ -56,7 +56,6 @@ const styles = {
     border: "1px solid",
     boxShadow: "0 8px 6px -6px black",
     margin: "0.2em",
-    width: "100px",
     height: "100px",
     borderRadius: "4px",
     cursor: "pointer",
