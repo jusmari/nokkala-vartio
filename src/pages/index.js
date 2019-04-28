@@ -25,7 +25,10 @@ const IndexPage = () => {
 
   return (
     <Layout>
-      <SEO title="Home" keywords={["nokkala", "vartio", "kalenteri"]} />
+      <SEO
+        title="Kalenteri"
+        keywords={["nokkala", "vartio", "kalenteri", "vartiokalenteri"]}
+      />
       <TodayTomorrowGuard />
       <h1>Varauskalenteri</h1>
 
