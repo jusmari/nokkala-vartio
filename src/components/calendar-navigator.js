@@ -24,6 +24,7 @@ const styles = {
   button: {
     maxWidth: "100px",
     minWidth: "80px",
+    backgroundColor: "#66ACD7",
   },
 }
 

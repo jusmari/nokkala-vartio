@@ -67,7 +67,7 @@ const styles = {
     width: "100px",
     height: "100px",
   },
-  nameRow: {},
+  nameRow: { padding: "0.5em 0" },
 }
 
 export default DayBox

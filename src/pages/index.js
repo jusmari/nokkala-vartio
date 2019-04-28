@@ -1,6 +1,7 @@
 import React, { useState } from "react"
 import Layout from "../components/layout"
 import Calendar from "../components/calendar"
+import TodayTomorrowGuard from "../components/todayTomorrowGuard"
 import SEO from "../components/seo"
 import CalendarNavigator from "../components/calendar-navigator"
 import dayjs from "dayjs"
@@ -25,7 +26,7 @@ const IndexPage = () => {
   return (
     <Layout>
       <SEO title="Home" keywords={["nokkala", "vartio", "kalenteri"]} />
-
+      <TodayTomorrowGuard />
       <h1>Varauskalenteri</h1>
 
       <CalendarNavigator
