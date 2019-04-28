@@ -32,7 +32,14 @@ const DayReserveModal = () => {
   const handleReservation = () => {
     const { store } = firebase
 
+    if (!displayName) {
+      setError("Päivitä sivu ja yritä uudelleen.")
+      return
+    }
+
     setLoading(true)
+    setError("")
+
     store()
       .collection("reservations")
       .add({ date: formattedDate, user: uid, name: displayName })
