@@ -16,7 +16,7 @@ const Calendar = ({ currentMonth, currentYear }) => {
 
   const prefixDayBoxes = times(
     i => <DayBox.Empty key={i} />,
-    firstDayWeekday - 1
+    Math.max(firstDayWeekday - 1, 0)
   )
 
   const dayBoxes = range(1, daysInMonth).map(d => {
