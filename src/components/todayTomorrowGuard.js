@@ -10,9 +10,9 @@ const todayTomorrowGuard = () => {
     .add(1, "day")
     .format("DD-MM-YYYY")
 
-  const todaysGuard = reservations && reservations.find(r => (r.date = today))
+  const todaysGuard = reservations && reservations.find(r => r.date === today)
   const tomorrowssGuard =
-    reservations && reservations.find(r => (r.date = tomorrow))
+    reservations && reservations.find(r => r.date === tomorrow)
 
   return (
     <div className="grid-middle">
