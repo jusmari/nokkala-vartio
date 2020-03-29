@@ -5,16 +5,17 @@
   "dependencies": {
     "core-js": "^2.6.5",
     "dayjs": "^1.8.12",
+    "eslint-plugin-prettier": "^3.1.2",
     "firebase": "^5.10.0",
-    "gatsby": "^2.3.16",
+    "gatsby": "^2.20.8",
     "gatsby-image": "^2.0.37",
     "gatsby-plugin-create-client-paths": "^2.0.5",
-    "gatsby-plugin-manifest": "^2.0.28",
+    "gatsby-plugin-manifest": "^2.3.3",
     "gatsby-plugin-offline": "^2.0.25",
     "gatsby-plugin-react-helmet": "^3.0.12",
-    "gatsby-plugin-sharp": "^2.0.32",
-    "gatsby-source-filesystem": "^2.0.29",
-    "gatsby-transformer-sharp": "^2.1.17",
+    "gatsby-plugin-sharp": "^2.5.3",
+    "gatsby-source-filesystem": "^2.2.2",
+    "gatsby-transformer-sharp": "^2.4.3",
     "prop-types": "^15.7.2",
     "ramda": "^0.26.1",
     "react": "^16.8.6",
@@ -24,6 +25,12 @@
     "react-spinners": "^0.5.4"
   },
   "devDependencies": {
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb": "^18.1.0",
+    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react": "^7.19.0",
+    "eslint-plugin-react-hooks": "^2.5.0",
     "prettier": "^1.17.0"
   },
   "keywords": [
